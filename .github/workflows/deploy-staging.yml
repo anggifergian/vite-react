@@ -1,4 +1,4 @@
-name: React Vite Staging
+name: React Vite Staging.
 
 on:
   push:
