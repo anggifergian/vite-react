@@ -1,4 +1,4 @@
-name: React Vite Staging.
+name: React Vite Staging
 
 on:
   push:
@@ -83,7 +83,7 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           envs: GTIHUB_SHA
           script: |
-            cd /wrong-dir
+            cd /vite-react
             export GIT_SHA=${GITHUB_SHA::7}
             echo "Deploying ghcr.io/${{ github.repository }}:sha-$GIT_SHA"
             docker-compose pull
