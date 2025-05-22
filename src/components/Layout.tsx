@@ -7,15 +7,15 @@ const Layout = () => {
         <nav className="w-[200px] pt-6">
           <ul>
             <li>
-              <Link to="/home">Home</Link>
+              <Link to="/home" viewTransition>Home</Link>
             </li>
 
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile" viewTransition>Profile</Link>
             </li>
             
             <li>
-              <Link to="/projects">Projects</Link>
+              <Link to="/projects" viewTransition>Projects</Link>
             </li>
           </ul>
         </nav>
