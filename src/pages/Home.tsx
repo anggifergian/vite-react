@@ -1,7 +1,7 @@
 function Home() {
   return (
     <>
-      <div className="flex justify-between items-center mb-3 h-12">
+      <div className="flex gap-2 flex-col md:flex-row justify-between md:items-center mb-3 min-h-12">
         <div className="font-semibold text-2xl">Dashboard</div>
 
         <div className="flex gap-2 items-center">
@@ -15,21 +15,21 @@ function Home() {
       </div>
 
       <div className="flex flex-col md:flex-row gap-3">
-        <div className="w-1/3 border border-gray-100 rounded-md p-3">
+        <div className="md:w-1/3 border border-gray-100 rounded-md p-3">
           <div className="font-medium text-gray-800 mb-2 text-sm">Team members</div>
           <div className="text-3xl font-semibold pb-1">176</div>
           <div className="font-light text-xs text-gray-500">
             <span className="text-green-600">+15.7%</span> from last month
           </div>
         </div>
-        <div className="w-1/3 border border-gray-100 rounded-md p-3">
+        <div className="md:w-1/3 border border-gray-100 rounded-md p-3">
           <div className="font-medium text-gray-800 mb-2 text-sm">Subscriptions</div>
           <div className="text-3xl font-semibold pb-1">+458</div>
           <div className="font-light text-xs text-gray-500">
             <span className="text-green-600">+25%</span> from last month
           </div>
         </div>
-        <div className="w-1/3 border border-gray-100 rounded-md p-3">
+        <div className="md:w-1/3 border border-gray-100 rounded-md p-3">
           <div className="font-medium text-gray-800 mb-2 text-sm">Total revenue</div>
           <div className="text-3xl font-semibold pb-1">$12,079</div>
           <div className="font-light text-xs text-gray-500">

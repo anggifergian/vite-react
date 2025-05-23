@@ -6,7 +6,7 @@ const Profile = () => {
       </div>
 
       <div className="flex flex-wrap items-start gap-3">
-        <div className="w-1/3 flex-initial p-3 px-4 rounded-md border border-gray-100">
+        <div className="w-full md:w-1/3 flex-initial p-3 px-4 rounded-md border border-gray-100">
           <div className="flex flex-col gap-2">
             <div className="flex flex-col items-center">
               <div className="w-20 h-20 rounded-full bg-gray-100 border border-neutral-100 mb-3 mt-2"></div>
