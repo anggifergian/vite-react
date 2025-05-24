@@ -1,0 +1,160 @@
+# How to Install Nginx on a VPS Ubuntu
+
+### Introduction
+In this blog, I would like to write how to install configure Nginx on an Ubuntu VPS, make it ready to serve your website or applications.
+
+### Prerequisites
+- a VPS (e.g. Hostinger, DigitalOcean, AWS EC2, etc)
+- SSH access to the server
+= A non-root user with sudo privileges
+- A domain name
+
+## 🚀 What is Nginx?
+Nginx (pronounced "engine-x") is a high-performance web server and reserver proxy, widely used to serve static content, proxy request to back-end applications, and handle load balancing.
+
+## Step 1: Connect to VPS
+Open your terminal and connect via SSH
+```
+ssh youruser@your-server-address
+```
+<br/>
+Since this is our first time access the server, we need to update the Ubuntu system:
+```
+sudo apt update && sudo apt upgrade -y
+```
+
+## Step 2: Install Nginx
+Install Nginx using the package manager:
+```
+sudo apt install nginx
+```
+<br/>
+After installing check if Nginx is running by running command:
+```
+sudo systemctl status nginx
+```
+<br/>
+The output should be:
+```
+Output● nginx.service - A high performance web server and a reverse proxy server
+   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+   Active: active (running) since Fri 2020-04-20 16:08:19 UTC; 3 days ago
+     Docs: man:nginx(8)
+ Main PID: 2369 (nginx)
+    Tasks: 2 (limit: 1153)
+   Memory: 3.5M
+   CGroup: /system.slice/nginx.service
+           ├─2369 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+           └─2380 nginx: worker process
+```
+<br/>
+To confirm that the Nginx is properly running, you can access the default Nginx page by opening your server IP's address on the browser.
+
+You can use this script tool to get your IP address.
+```
+$ curl -4 icanhazip.com
+```
+
+## Step 3: Configure UFW Firewall
+Allow HTTP and HTTPS traffic by running command:
+```
+sudo ufw enable
+sudo ufw allow 'Nginx Full'
+```
+<br/>
+Then verify the status:
+```
+sudo ufw status
+```
+<br/>
+The output will indicated which HTTP traffic is allowed:
+```
+OutputStatus: active
+
+To                         Action      From
+--                         ------      ----
+Nginx HTTP                 ALLOW       Anywhere                  
+Nginx HTTP (v6)            ALLOW       Anywhere (v6)
+```
+
+## Step 4: Setup Initial Server Block
+We need to create a folder for our domain content on We need to create a web directory for our domain.
+See more the default web location Nginx [here](https://betterstack.com/community/questions/what-is-default-public-www-location-in-nginx/).
+
+<br/>
+Let's create a basic Nginx config for our domain. In this case I have Reactjs repo with Vite and I named the folder with 'vite-react'.
+```
+sudo nano /etc/nginx/sites-available/vite-react
+```
+
+<br/>
+In this case, I have domain named 'rukunwarga.xyz' where this blog is served. Example config
+```
+server {
+    listen 80;
+    server_name rukunwarga.xyz www.rukunwarga.xyz;
+
+    root /var/www/rukunwarga.xyz;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/;
+    }
+}
+```
+
+<br/>
+Then create our website folder:
+```
+sudo mkdir -p /var/www/rukunwarga.xyz/html
+``` 
+
+<br/>
+I will create very simple Html but later we will used react build ``/dist`` folder to show our app:
+```
+sudo nano /var/www/rukunwarga.xyz/html/index.html
+```
+
+<br/>
+Inside, add the following sample Html
+```
+<html>
+    <head>
+        <title>Welcome to Our Page</title>
+    </head>
+    <body>
+        <h1>My First Page</h1>
+    </body>
+</html>
+```
+
+<br/>
+Enabled our previous Nginx config into ``sites-enabled``:
+```
+sudo ln -s /etc/nginx/sites-available/vite-react /etc/nginx/sites-enabled/
+```
+
+<br/>
+Verify our Nginx status
+```
+sudo nginx -t
+```
+
+<br/>
+Reload Nginx in order to apply the configuratios:
+```
+sudo systemctl reload nginx
+```
+
+<br/>
+Open your favorite browser to see the result by opening the IP address. The Nginx default content now replaced with our simple HTML page.
+
+### ✅ We're Done!
+We have just:
+- Installed and started Nginx
+- Secure access via UFW
+- Served our own HTML content
+
+### What's Next?
+In the next post it will cover how to containerize your app with Docker and prepare it for CI/CD deployment.
+<br/>
