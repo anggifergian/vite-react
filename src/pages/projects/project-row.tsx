@@ -1,3 +1,4 @@
+import { Button } from "../../components/ui/button";
 import { Project } from "./project.type";
 
 const ProjectRow: React.FC<{ data: Project }> = ({ data }) => {
@@ -21,7 +22,9 @@ const ProjectRow: React.FC<{ data: Project }> = ({ data }) => {
         </div>
 
         <div className="w-[20%] sm:w-[10%] xl:w-[10%]">
-          <div className="px-2 py-1">{data.status}%</div>
+          <div className="px-2 py-1">
+            <Button>{data.status}%</Button>
+          </div>
         </div>
       </div>
     </>
