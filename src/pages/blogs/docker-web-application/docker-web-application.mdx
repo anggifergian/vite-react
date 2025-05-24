@@ -1,0 +1,112 @@
+# Dockerize Vite React Application: Beginner-friendly Guide
+
+### Introduction
+Docker is a platform for developing, shipping, and running applications inside lightweight containers. Containers package your code along with all its dependencies–making it run reliably on any environment.
+
+### Prerequisites
+Make sure you have:
+- Docker installed on your machine
+- Basic Vite React repo (or follow steps below to create one)
+
+## Step 1: Create a Vite + React Project
+If you do not have one yet, create a new project:
+```
+npm create vite@latest vite-react -- --template react
+cd vite-react
+npm install
+```
+<br/>
+Run it locally to test:
+```
+npm run dev
+```
+
+<br/>
+Feel free to modify your Vite React at this stage. You can add [tailwindcss](https://tailwindcss.com/), [react router](https://reactrouter.com/home), or any other packages.
+
+## Step 2: Create a Dockerfile
+Lets verify first that our Docker enginee is available running:
+```
+docker ps
+```
+<br/>
+The output should be like this, so we can continue to next step:
+```
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+<br/>
+Or if you do not have yet Docker installed on your machine, you can refer to this [page](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) for Docker installation.
+
+Now at the root of your project, create a file named ``Dockerfile``, make sure you named it correctly:
+```
+# Step 1: Build the app
+FROM node:lts-alpine3.20 AS builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+# Step 2: Serve the app with Nginx
+FROM nginx:alpine
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD [ "nginx", "-g", "daemon off;" ]
+```
+
+<br/>
+We used ``npm run build`` in order to get production build at ``/dist`` which we will used at next tutorial on deploying our Vite React app.
+
+<br/>
+In order to avoid unnecessary artifacts from being included when building Docker images, create ``.dockerignore`` file at the same path as Dockerfile:
+```
+node_modules
+dist
+.git
+.gitignore
+.env*
+.vscode
+```
+
+## Step 3: Build and Run our React Vite App
+First, we will build the image of our app. Run these commands from our project root or at the same path as Dockerfile located:
+```
+docker build -t vite-react:1.0.0 .
+```
+<br/>
+Check our docker images:
+```
+docker images
+```
+<br/>
+We will see there is our react vite image:
+```
+REPOSITORY     TAG       IMAGE ID       CREATED        SIZE
+vite-react     1.0.0     c38c8801d57c   1 minute ago   49.9MB
+```
+<br/>
+Now we can run the Docker container using the image react vite:
+```
+docker run -p 4000:80 -d vite-react:1.0.0
+```
+<br/>
+Open our browser and go to:
+```
+http://localhost:4000
+```
+<br/>
+You should see our Vite React app running!
+
+### ✅ We're Done!
+We have just:
+- Create a React + Vite app
+- Build and running app using Docker
+
+### What's Next?
+In the next part of this series, we will setup Github Accounts for CI/CD to automatically deploy this Vite React Dockerize app to our VPS on every code push.
+<br/>
