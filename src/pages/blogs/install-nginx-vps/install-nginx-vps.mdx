@@ -88,13 +88,13 @@ sudo nano /etc/nginx/sites-available/vite-react
 ```
 
 <br/>
-In this case, I have domain named 'rukunwarga.xyz' where this blog is served. Example config
+In this case, I have domain named 'anggifergian.com' where this blog is served. Example config
 ```
 server {
     listen 80;
-    server_name rukunwarga.xyz www.rukunwarga.xyz;
+    server_name anggifergian.com www.anggifergian.com;
 
-    root /var/www/rukunwarga.xyz;
+    root /var/www/anggifergian.com;
     index index.html;
 
     location / {
@@ -106,13 +106,13 @@ server {
 <br/>
 Then create our website folder:
 ```
-sudo mkdir -p /var/www/rukunwarga.xyz/html
+sudo mkdir -p /var/www/anggifergian.com/html
 ``` 
 
 <br/>
 I will create very simple Html but later we will used react build ``/dist`` folder to show our app:
 ```
-sudo nano /var/www/rukunwarga.xyz/html/index.html
+sudo nano /var/www/anggifergian.com/html/index.html
 ```
 
 <br/>
