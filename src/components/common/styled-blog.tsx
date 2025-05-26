@@ -1,12 +1,12 @@
 export const mdxComponents = {
   h1: (props: React.ComponentProps<"h1">) => (
-    <h1 className="text-4xl text-gray-900 font-bold mt-8 mb-4" {...props} />
+    <h1 className="text-3xl md:text-4xl text-gray-900 font-bold mt-8 mb-[40px] text-center text-balance" {...props} />
   ),
   h2: (props: React.ComponentProps<"h2">) => (
-    <h2 className="text-3xl text-gray-900 font-semibold mt-6 mb-3 " {...props} />
+    <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mt-6 mb-3 " {...props} />
   ),
   h3: (props: React.ComponentProps<"h3">) => (
-    <h3 className="text-2xl text-gray-900 font-medium mt-5 mb-2 " {...props} />
+    <h3 className="text-xl md:text-2xl text-gray-900 font-medium mt-5 mb-2 " {...props} />
   ),
   p: (props: React.ComponentProps<"p">) => (
     <p className="text-gray-700 mb-2 text-[16px] leading-[1.8]" {...props} />

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { cn } from "../../libs/style";
 
 const navItems = [
   { path: "/home", label: "Home" },
   { path: "/profile", label: "Profile" },
-  { path: "/projects", label: "Projects" },
   { path: "/blog", label: "Blogs" },
 ];
 
@@ -32,14 +31,16 @@ const Navbar = () => {
     <div
       className={cn(
         "bg-white",
-        "fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 shadow-lg md:shadow-none",
-        isSticky && "border-b border-gray-100"
+        "fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300",
+        isSticky && "shadow-lg"
       )}
     >
-      <div className="mx-auto sm:max-w-[1200px] mx-auto px-4 py-5 flex items-center justify-between">
-        <h1 className="font-semibold">anggifergian</h1>
+      <div className="sm:max-w-[800px] xl:max-w-[1000px] mx-auto px-4 py-5 md:py-7 flex items-center justify-between">
+        <Link to="/" className="font-semibold">
+          Anggi Fergian
+        </Link>
 
-        <ul className="hidden md:flex gap-2">
+        <ul className="flex gap-2">
           {navItems.map((item) => (
             <li key={item.path} className="px-2 py-1.5">
               <NavLink
@@ -58,14 +59,14 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="hidden md:flex">
+        <div className="hidden">
           <div>Dark/Light mode</div>
         </div>
 
         {/* Hamburger Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden p-2 rounded focus:outline-none"
+          className="hidden p-2 rounded focus:outline-none"
         >
           {menuOpen ? <p>Hide menu</p> : <p>Show menu</p>}
         </button>
@@ -73,7 +74,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-b border-gray-200 px-4 pt-4 pb-8">
+        <div className="hidden bg-white border-t border-b border-gray-200 px-4 pt-4 pb-8">
           <ul className="flex flex-col gap-3">
             {navItems.map((item) => (
               <li key={item.path} className="px-2 py-2">

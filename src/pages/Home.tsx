@@ -2,7 +2,7 @@ function Home() {
   return (
     <>
       <div className="flex gap-2 flex-col md:flex-row justify-between md:items-center mb-3 min-h-12">
-        <div className="font-semibold text-2xl">Dashboard</div>
+        <div className="font-semibold text-2xl">Home</div>
 
         <div className="flex gap-2 items-center">
           <div className="border border-gray-100 rounded-md py-2 px-3 text-gray-700">
