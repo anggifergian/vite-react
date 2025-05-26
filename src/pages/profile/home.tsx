@@ -4,6 +4,8 @@ import { blogList } from "../blogs/blog.slug";
 import { socialMediaList } from "./social-media.data";
 
 const Home = () => {
+  const selectedBlog = blogList[1];
+
   return (
     <>
       <div className="py-10 md:py-[60px]">
@@ -53,13 +55,13 @@ const Home = () => {
           <div>
             <h2 className="text-xl font-medium pb-2">Featured blog</h2>
             <Link
-              to={`/blog/${blogList[0].slug}`}
+              to={`/blog/${selectedBlog.slug}`}
               className="text-lg pb-1 text-gray-900 hover:cursor-pointer hover:underline hover:underline-offset-4"
             >
-              {blogList[0].title}
+              {selectedBlog.title}
             </Link>
             <div className="text-sm text-gray-700 pb-1">
-              {formatDate(blogList[0].date)}
+              {formatDate(selectedBlog.date)}
             </div>
             <p className="leading-relaxed text-gray-700 pb-2">
               Docker is a platform for developing, shipping, and running
@@ -68,7 +70,7 @@ const Home = () => {
               on any environment.
             </p>
             <Link
-              to={`/blog/${blogList[0].slug}`}
+              to={`/blog/${selectedBlog.slug}`}
               viewTransition
               className="hover:cursor-pointer hover:underline hover:underline-offset-4"
             >
