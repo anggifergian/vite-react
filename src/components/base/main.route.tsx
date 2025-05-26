@@ -5,8 +5,8 @@ import Layout from "../Layout";
 import { routeChild } from "../../libs/router";
 
 const mainPages = [
-  { path: "home", component: lazy(() => import("../../pages/Home")) },
-  { path: "profile", component: lazy(() => import("../../pages/Profile")) },
+  { path: "home", component: lazy(() => import("../../pages/profile/home")) },
+  { path: "profile", component: lazy(() => import("../../pages/profile/profile")) },
   {
     path: "projects",
     component: lazy(() => import("../../pages/projects/project-list")),

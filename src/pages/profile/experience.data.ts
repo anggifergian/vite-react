@@ -1,0 +1,47 @@
+export const experienceList = [
+    {
+      id: '1',
+      company: 'Accenture Indonesia',
+      company_website: 'https://www.linkedin.com/company/accenture-sea/',
+      job_title: 'Senior Front-end Engineer',
+      employment_date: 'Oct 2024 - Present',
+      employment_type: 'Full-time',
+      location: 'Semarang, Indonesia',
+    },
+    {
+      id: '2',
+      company: 'Paper.id',
+      company_website: 'https://www.paper.id/',
+      job_title: 'Front-end Engineer',
+      employment_date: 'Jun 2023 - Oct 2024',
+      employment_type: 'Full-time',
+      location: 'Jakarta, Indonesia',
+    },
+    {
+      id: '3',
+      company: 'Dusdusan Dotcom Indonesia',
+      company_website: 'https://www.linkedin.com/company/pt-dusdusan-dotcom-indonesia/',
+      job_title: 'Front-end Developer',
+      employment_date: 'Jan 2022 - Mar 2024',
+      employment_type: 'Part-time',
+      location: 'Bandung, Indonesia',
+    },
+    {
+      id: '4',
+      company: 'KoinWorks',
+      company_website: 'https://koinworks.com/en/',
+      job_title: 'Front-end Developer',
+      employment_date: 'Jan 2022 - Mar 2023',
+      employment_type: 'Full-time',
+      location: 'Jakarta, Indonesia',
+    },
+    {
+      id: '5',
+      company: 'Prudential Life Assurance',
+      company_website: 'https://www.prudential.co.id/id/',
+      job_title: 'Front-end Developer',
+      employment_date: 'Apr 2021 - Jan 2022',
+      employment_type: 'Contract',
+      location: 'Jakarta, Indonesia',
+    }
+  ]
